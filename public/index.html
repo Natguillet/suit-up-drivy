@@ -1,43 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>CSS/HTML Workshop with Drivy</title>
-  <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
-  <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,500,400italic,700,700italic' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="http://storage.googleapis.com/code.getmdl.io/1.0.1/material.teal-red.min.css" />
-  <script src="http://storage.googleapis.com/code.getmdl.io/1.0.1/material.min.js"></script>
+  <title>Form Rental Price</title>
   <link rel="stylesheet" href="style.css"/>
-  <script src="style.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <link rel="stylesheet" href="material.min.css"/>
 </head>
 <body>
   <div class="mdl-grid">
-    <div class="mdl-card mdl-shadow--6dp mdl-cell mdl-cell--6-col mdl-cell--3-col-tablet">
-      <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
-        <h2 class="mdl-card__title-text">Form Rental Price</h2>
-      </div>
-      <div id="car">
-        <div class="mdl-card__supporting-text">
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="model mdl-textfield__input" type="text" id="carModel" />
-            <label class="mdl-textfield__label" for="carModel">Car model</label>
-          </div>
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="price-by-day mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample2">
-            <label class="mdl-textfield__label" for="sample2">Price by day</label>
-            <span class="mdl-textfield__error">Input is not a number!</span>
-          </div>
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="price-by-km mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample3">
-            <label class="mdl-textfield__label" for="sample3">Price by km</label>
-            <span class="mdl-textfield__error">Input is not a number!</span>
-          </div>
-        </div>
-      </div>
-      <button class="mdl-button mdl-js-button mdl-button--accent" id="compute">
-        Compute
-      </button>
-    </div>
     <div class="mdl-card mdl-shadow--6dp mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet">
       <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
         <h2 class="mdl-card__title-text">Form Rental Price</h2>
@@ -64,22 +37,67 @@
         </div>
       </div>
     </div>
-    <div class="mdl-card mdl-shadow--6dp">
+    <div class="mdl-card mdl-shadow--6dp mdl-cell mdl-cell--6-col mdl-cell--3-col-tablet">
+      <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
+        <h2 class="mdl-card__title-text">Form Rental Price</h2>
+      </div>
+      <div id="car">
+        <div class="mdl-card__supporting-text">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="model mdl-textfield__input" type="text" id="carModel" />
+            <label class="mdl-textfield__label" for="carModel">Car model</label>
+          </div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="price-by-day mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample2">
+            <label class="mdl-textfield__label" for="sample2">Price by day</label>
+            <span class="mdl-textfield__error">Input is not a number!</span>
+          </div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="price-by-km mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample3">
+            <label class="mdl-textfield__label" for="sample3">Price by km</label>
+            <span class="mdl-textfield__error">Input is not a number!</span>
+          </div>
+        </div>
+      </div>
+      <div class="mdl-card__actions mdl-card--border">
+        <button class="mdl-button mdl-js-button mdl-button--accent mdl-cell mdl-cell--4-col" id="compute">
+          Compute
+        </button>
+      </div>
+    </div>
+    <div class="mdl-card mdl-shadow--6dp mdl-cell mdl-cell--12-col" id="tonDiv">
+      <div class="mdl-card__title mdl-color--accent mdl-color-text--white">
+        <h2 class="mdl-card__title-text">Results</h2>
+      </div>
+      <ul class="demo-list-two mdl-list">
+        <div id="actors"></div>
+      </ul>
     </div>
   </div>
 
-  <div id="actors"></div>
+
   <script id="template" type="x-tmpl-mustache">
   {{#actors}}
   <div class="actor">
+  <li class="mdl-list__item mdl-list__item--two-line">
+  <span class="mdl-list__item-primary-content">
+  <i class="material-icons mdl-list__item-avatar">attach_money</i>
   <span>{{who}}</span>
-  <span>{{type}}</span>
-  <span>{{amount}}</span>
+  <span class="mdl-list__item-sub-title">{{type}}: {{amount}}</span>
+  </sapn>
+  </li>
   </div>
   {{/actors}}
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js"></script>
   <script src="drivy.js"></script>
   <script src="index.js"></script>
+  <script>
+  document.querySelector("#compute").onclick = function() {
+    if (window.getComputedStyle(document.querySelector('#tonDiv')).display=='none'){
+      document.querySelector("#tonDiv").style.display="block";
+    }
+  }
+  </script>
 </body>
 </html>

@@ -10,3 +10,13 @@
 .vignets {
 display:none;
   width:400px;margin:auto;}
+	.demo-list-two {
+	  width: 300px;
+	}
+	body
+	{
+	    background-color: #585b61;
+	}
+	#tonDiv{
+	display:none;
+	}
